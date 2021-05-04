@@ -9,6 +9,8 @@ namespace TowerDefense.Affectors
 	/// </summary>
 	public abstract class Affector : MonoBehaviour
 	{
+		public bool isActive;
+
 		/// <summary>
 		/// Short description for affector for displaying in the UI
 		/// </summary>

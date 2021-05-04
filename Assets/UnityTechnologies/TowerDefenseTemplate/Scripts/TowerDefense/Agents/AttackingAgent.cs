@@ -19,7 +19,7 @@ namespace TowerDefense.Agents
 		/// <summary>
 		/// The attached attack affector
 		/// </summary>
-		protected AttackAffector m_AttackAffector;
+		public AttackAffector m_AttackAffector;
 		
 		/// <summary>
 		/// Is this agent currently engaging a tower?

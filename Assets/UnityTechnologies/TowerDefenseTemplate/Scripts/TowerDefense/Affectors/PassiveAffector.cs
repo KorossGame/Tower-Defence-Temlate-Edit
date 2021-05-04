@@ -14,8 +14,7 @@ namespace TowerDefense.Affectors
 		/// <summary>
 		/// Color of effect radius visualization
 		/// </summary>
-		public  Color radiusEffectColor;
-
+		public Color radiusEffectColor;
 		public Targetter towerTargetter;
 
 		/// <summary>

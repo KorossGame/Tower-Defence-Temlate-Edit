@@ -30,8 +30,7 @@ namespace TowerDefense.UI
 		public void SetupRadiusVisualizers(Tower tower, Transform ghost = null)
 		{
 			// Create necessary affector radius visualizations
-			List<ITowerRadiusProvider> providers =
-				tower.levels[tower.currentLevel].GetRadiusVisualizers();
+			List<ITowerRadiusProvider> providers = tower.levels[tower.currentLevel].GetRadiusVisualizers();
 
 			int length = providers.Count;
 			for (int i = 0; i < length; i++)

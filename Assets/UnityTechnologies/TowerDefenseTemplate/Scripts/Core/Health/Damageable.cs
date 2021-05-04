@@ -116,6 +116,8 @@ namespace Core.Health
 		/// </param>
 		public void SetHealth(float health)
 		{
+			if (health > maxHealth) health = maxHealth;
+
 			var info = new HealthChangeInfo
 			{
 				damageable = this,

@@ -21,22 +21,38 @@ namespace TowerDefense.Agents
 		/// <param name="slowfxPrefab">The instantiated object to visualize the slow effect</param>
 		/// <param name="position"></param>
 		/// <param name="scale"></param>
-		public void Initialize(float slowFactor, GameObject slowfxPrefab = null, 
+		public virtual void Initialize(float slowFactor, GameObject slowfxPrefab = null, 
 		                       Vector3 position = default(Vector3),
-		                       float scale = 1)
+		                       float scale = 1, bool positiveMode = true)
 		{
 			LazyLoad();
 			m_CurrentEffects.Add(slowFactor);
 
-			// find greatest slow effect
-			float min = slowFactor;
-			foreach (float item in m_CurrentEffects)
-			{
-				min = Mathf.Min(min, item);
+			float originalSpeed = m_Agent.originalMovementSpeed;
+			float newSpeed = 0;
+
+			// Slow mode or speed up
+			if (positiveMode)
+            {
+				// find greatest slow effect
+				float min = slowFactor;
+				foreach (float item in m_CurrentEffects)
+				{
+					min = Mathf.Min(min, item);
+				}
+				newSpeed = originalSpeed * min;
+			}
+			else
+            {
+				// find greatest speed up effect
+				float max = slowFactor;
+				foreach (float item in m_CurrentEffects)
+				{
+					max = Mathf.Max(max, item);
+				}
+				newSpeed = originalSpeed * max;
 			}
 			
-			float originalSpeed = m_Agent.originalMovementSpeed;
-			float newSpeed = originalSpeed * min;
 			m_Agent.navMeshNavMeshAgent.speed = newSpeed;
 
 			if (m_SlowFx == null && slowfxPrefab != null)
@@ -46,6 +62,7 @@ namespace TowerDefense.Agents
 				m_SlowFx.transform.localPosition = position;
 				m_SlowFx.transform.localScale *= scale;
 			}
+
 			m_Agent.removed += OnRemoved;
 		}
 
@@ -69,13 +86,13 @@ namespace TowerDefense.Agents
 		/// <summary>
 		/// Agent has died, remove affect
 		/// </summary>
-		void OnRemoved(DamageableBehaviour targetable)
+		protected void OnRemoved(DamageableBehaviour targetable)
 		{
 			m_Agent.removed -= OnRemoved;
 			ResetAgent();
 		}
 
-		void ResetAgent()
+		protected void ResetAgent()
 		{
 			if (m_Agent != null)
 			{

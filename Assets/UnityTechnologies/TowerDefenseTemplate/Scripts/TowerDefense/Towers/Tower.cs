@@ -37,11 +37,15 @@ namespace TowerDefense.Towers
 		/// The current level of the tower
 		/// </summary>
 		public int currentLevel { get; protected set; }
+		public event Action towerUpgrade;
 
 		/// <summary>
 		/// Reference to the data of the current level
 		/// </summary>
 		public TowerLevel currentTowerLevel { get; protected set; }
+
+		public float originalFireRateSpeed { get; set; } = 0;
+		public float originalDamage { get; set; } = 0;
 
 		/// <summary>
 		/// Gets whether the tower can level up anymore
@@ -248,6 +252,12 @@ namespace TowerDefense.Towers
 				return;
 			}
 			currentLevel = level;
+
+			if (towerUpgrade != null)
+            {
+				towerUpgrade();
+			}
+
 			if (currentTowerLevel != null)
 			{
 				Destroy(currentTowerLevel.gameObject);

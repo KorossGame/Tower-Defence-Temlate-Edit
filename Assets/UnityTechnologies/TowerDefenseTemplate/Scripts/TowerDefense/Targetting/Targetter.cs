@@ -217,7 +217,7 @@ namespace TowerDefense.Targetting
 				targetable.removed -= OnTargetRemoved;
 			}
 		}
- 
+
 		/// <summary>
 		/// On entering the trigger, a valid targetable is added to the tracking list.
 		/// </summary>

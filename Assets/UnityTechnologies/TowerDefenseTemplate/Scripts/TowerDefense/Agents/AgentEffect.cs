@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TowerDefense.Towers;
+using UnityEngine;
 
 namespace TowerDefense.Agents
 {
@@ -8,9 +9,10 @@ namespace TowerDefense.Agents
 	public abstract class AgentEffect : MonoBehaviour
 	{
 		/// <summary>
-		/// Reference to the agent that will be affected
+		/// References to the agent that will be affected
 		/// </summary>
 		protected Agent m_Agent;
+		protected Tower m_Tower;
 
 		public virtual void Awake()
 		{
@@ -25,6 +27,10 @@ namespace TowerDefense.Agents
 			if (m_Agent == null)
 			{
 				m_Agent = GetComponent<Agent>();
+			}
+			if (m_Tower == null)
+            {
+				m_Tower = GetComponent<Tower>();
 			}
 		}
 	}

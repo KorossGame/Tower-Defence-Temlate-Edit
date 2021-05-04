@@ -1,31 +1,30 @@
-﻿using ActionGameFramework.Health;
+using ActionGameFramework.Health;
+using System.Collections;
+using System.Collections.Generic;
 using TowerDefense.Agents;
 using UnityEngine;
 
 namespace TowerDefense.Affectors
 {
-	/// <summary>
-	/// Uses a trigger to attach and remove <see cref="AgentSlower" /> components to agents
-	/// </summary>
-	public class SlowAffector : PassiveAffector
-	{
+    public class FireRateAffector : PassiveAffector
+    {
 		/// <summary>
 		/// A normalized value to slow agents by
 		/// </summary>
-		[Range(0, 1)]
-		public float slowFactor;
+		[Range(0, 2)]
+		public float fireRateFactor;
 
 		/// <summary>
 		/// The slow factor for displaying to the UI
 		/// </summary>
-		public string slowFactorFormat = "<b>Slow Factor:</b> {0}";
+		public string fastFactorFormat = "<b>Fire Rate Factor:</b> {0}";
 
 		/// <summary>
 		/// The particle system that plays when an entity enters the sphere
 		/// </summary>
 		public ParticleSystem enterParticleSystem;
 
-		public GameObject slowFxPrefab;
+		public GameObject fireRateFxPrefab;
 
 		/// <summary>
 		/// The audio source that plays when an entity enters the sphere
@@ -44,24 +43,33 @@ namespace TowerDefense.Affectors
 		/// <summary>
 		/// Unsubsribes from the relevant targetter events
 		/// </summary>
-		void OnDestroy()
+		protected void OnDestroy()
 		{
 			towerTargetter.targetEntersRange -= OnTargetEntersRange;
 			towerTargetter.targetExitsRange -= OnTargetExitsRange;
 		}
 
 		/// <summary>
-		/// Attaches a <see cref="AgentSlower" /> to the agent
+		/// Attaches a <see cref="AgentFireRateUp" /> to the agent
 		/// </summary>
-		/// <param name="target">The agent to attach the slower to</param>
-		protected void AttachSlowComponent(Agent target)
+		/// <param name="target">The agent to attach the faster to</param>
+		protected void AttachFireRateComponent(Agent target)
 		{
-			var slower = target.GetComponent<AgentSlower>();
-			if (slower == null)
+			var agent = target.GetComponent<AgentFireRateUp>();
+			if (agent == null)
 			{
-				slower = target.gameObject.AddComponent<AgentSlower>();
+				agent = target.gameObject.AddComponent<AgentFireRateUp>();
 			}
-			slower.Initialize(slowFactor, slowFxPrefab, target.appliedEffectOffset, target.appliedEffectScale);
+
+			if (fireRateFactor >= 1)
+			{
+				agent.Initialize(fireRateFactor, fireRateFxPrefab, target.appliedEffectOffset, target.appliedEffectScale);
+			}
+			else
+            {
+				agent.Initialize(fireRateFactor, fireRateFxPrefab, target.appliedEffectOffset, target.appliedEffectScale, false);
+            }
+			
 
 			if (enterParticleSystem != null)
 			{
@@ -74,19 +82,19 @@ namespace TowerDefense.Affectors
 		}
 
 		/// <summary>
-		/// Removes the <see cref="AgentSlower" /> from the agent once it leaves the area
+		/// Removes the <see cref="AgentFireRateUp" /> from the agent once it leaves the area
 		/// </summary>
-		/// <param name="target">The agent to remove the slower from</param>
-		protected void RemoveSlowComponent(Agent target)
+		/// <param name="target">The agent to remove the faster from</param>
+		protected void RemoveFireRateComponent(Agent target)
 		{
 			if (target == null)
 			{
 				return;
 			}
-			var slowComponent = target.gameObject.GetComponent<AgentSlower>();
-			if (slowComponent != null)
+			var agent = target.gameObject.GetComponent<AgentFireRateUp>();
+			if (agent != null)
 			{
-				slowComponent.RemoveSlow(slowFactor);
+				agent.RemoveSlow(fireRateFactor);
 			}
 		}
 
@@ -95,12 +103,14 @@ namespace TowerDefense.Affectors
 		/// </summary>
 		protected void OnTargetEntersRange(Targetable other)
 		{
+			if (!isActive) return;
+
 			var agent = other as Agent;
 			if (agent == null)
 			{
 				return;
 			}
-			AttachSlowComponent(agent);
+			AttachFireRateComponent(agent);
 		}
 
 		/// <summary>
@@ -113,7 +123,9 @@ namespace TowerDefense.Affectors
 			{
 				return;
 			}
-			RemoveSlowComponent(searchable);
+			RemoveFireRateComponent(searchable);
 		}
 	}
 }
+
+

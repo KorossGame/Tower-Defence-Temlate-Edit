@@ -35,5 +35,5 @@ MonoBehaviour:
     sceneName: Level5
   - id: 5
     name: Level 6
-    description: Last Moment
+    description: Prepare more energy, enemies are comming from everywhere
     sceneName: Level6

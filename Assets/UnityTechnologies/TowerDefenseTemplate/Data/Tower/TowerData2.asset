@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24e2352be0954e359a850a9d99215c6e, type: 3}
   m_Name: TowerData2
   m_EditorClassIdentifier: 
-  description: Tier 2 - Still Does Nothing
-  upgradeDescription: ???
-  cost: 5
-  sell: 0
+  description: Tier 2 - Applies Random Effect on Towers or Enemies
+  upgradeDescription: Increases % of Good Effects
+  cost: 25
+  sell: 14
   maxHealth: 5
   startingHealth: 5
   icon: {fileID: 21300000, guid: 8de2b0ca8a36944a9b9dd75dff42644f, type: 3}

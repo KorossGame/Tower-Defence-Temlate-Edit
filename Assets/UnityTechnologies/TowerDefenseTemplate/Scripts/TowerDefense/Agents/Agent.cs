@@ -14,7 +14,7 @@ namespace TowerDefense.Agents
 	/// </summary>
 	[RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(AttackAffector))]
 	public abstract class Agent : Targetable
-	{	
+	{
 		/// <summary>
 		/// A means of keeping track of the agent along its path
 		/// </summary>
@@ -39,7 +39,7 @@ namespace TowerDefense.Agents
 			/// For flying agents, when they move over obstacles
 			/// </summary>
 			PushingThrough,
-			
+
 			/// <summary>
 			/// When the agent has completed their path
 			/// </summary>
@@ -55,7 +55,7 @@ namespace TowerDefense.Agents
 		/// Position offset for an applied affect
 		/// </summary>
 		public Vector3 appliedEffectOffset = Vector3.zero;
-		
+
 		/// <summary>
 		/// Scale adjustment for an applied affect
 		/// </summary>
@@ -80,7 +80,7 @@ namespace TowerDefense.Agents
 		/// Stores the Destination to the next node so we don't need to get new random positions every time
 		/// </summary>
 		protected Vector3 m_Destination;
-		
+
 		/// <summary>
 		/// Gets the attached nav mesh agent velocity
 		/// </summary>
@@ -88,7 +88,7 @@ namespace TowerDefense.Agents
 		{
 			get { return m_NavMeshAgent.velocity; }
 		}
-		
+
 		/// <summary>
 		/// The current state of the agent along the path
 		/// </summary>
@@ -115,6 +115,7 @@ namespace TowerDefense.Agents
 		/// Gets this agent's original movement speed
 		/// </summary>
 		public float originalMovementSpeed { get; private set; }
+		public float originalHPAmount { get; set; }
 
 		/// <summary>
 		/// Checks if the path is blocked
@@ -300,7 +301,7 @@ namespace TowerDefense.Agents
 			{
 				m_LevelManager = LevelManager.instance;
 			}
-		}
+	}
 
 		/// <summary>
 		/// Move along the path, change to <see cref="Agent.State.OnPartialPath" />

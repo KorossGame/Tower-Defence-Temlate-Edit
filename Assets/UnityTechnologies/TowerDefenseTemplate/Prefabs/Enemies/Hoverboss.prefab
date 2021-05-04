@@ -9729,6 +9729,7 @@ MonoBehaviour:
   targetTransform: {fileID: 4763509118669760}
   appliedEffectOffset: {x: 0, y: 0.2, z: 0}
   appliedEffectScale: 1.5
+  m_AttackAffector: {fileID: 0}
 --- !u!114 &114553375644657304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9802,6 +9803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4f7293b07e4698a4e3b652679f0c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   description: 
   projectile: {fileID: 1797349743178286, guid: efcfdd276fd9a4bce9c848912a90dc0b, type: 3}
   projectilePoints:
