@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910bcb715cd3344619df786cb0658efb, type: 3}
   m_Name: CustomEnemy
   m_EditorClassIdentifier: 
-  agentName: Goblin
+  agentName: Energy Goblin
   agentDescription: Steal the energy
   agentPrefab: {fileID: 2834644667317361923, guid: 8ac826de6d46dab4880202b511724bc5,
     type: 3}

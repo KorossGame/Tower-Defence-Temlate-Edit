@@ -105,8 +105,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7163144406027951798}
   - component: {fileID: 6142760579525891157}
-  - component: {fileID: 6741319364005512870}
-  - component: {fileID: 3858604639873649696}
   - component: {fileID: 8463545337967627026}
   - component: {fileID: 8922356635717294128}
   - component: {fileID: 7608634187526072525}
@@ -151,49 +149,6 @@ MonoBehaviour:
   idleCorrectionTime: 2
   attachedCollider: {fileID: 8922356635717294128}
   idleWaitTime: 2
---- !u!114 &6741319364005512870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2524913442183630846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a47e72e629e2d4f4f9f677ba61c1acc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  description: 
-  radiusEffectColor: {r: 1, g: 0, b: 0, a: 0.11764706}
-  towerTargetter: {fileID: 5859065352808519232}
-  damageFactor: 1
-  damageFactorFormat: <b>Damage Factor:</b> {0}
-  enterParticleSystem: {fileID: 0}
-  damageFxPrefab: {fileID: 1202038136039314, guid: 2a2145ba402264aca9c0deb7d222e5bc,
-    type: 3}
-  audioSource: {fileID: 0}
---- !u!114 &3858604639873649696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2524913442183630846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777e3a8f13100ee43b4f0da185dcc859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  description: 
-  radiusEffectColor: {r: 1, g: 0.28773582, b: 0.28773582, a: 0.11764706}
-  towerTargetter: {fileID: 5859065352808519232}
-  hpFactor: 1
-  hpFactorFormat: <b>HP Factor:</b> {0}
-  enterParticleSystem: {fileID: 0}
-  hpFxPrefab: {fileID: 1202038136039314, guid: 2a2145ba402264aca9c0deb7d222e5bc, type: 3}
-  audioSource: {fileID: 0}
 --- !u!114 &8463545337967627026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,11 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3305c3bf82882cc4db78d9e6318d439f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
   description: 
   radiusEffectColor: {r: 0.2216981, g: 0.71558857, b: 1, a: 0.11764706}
   towerTargetter: {fileID: 5859065352808519232}
-  fireRateFactor: 1
+  fireRateFactor: 1.5
   fastFactorFormat: <b>Fast Factor:</b> {0}
   enterParticleSystem: {fileID: 0}
   fireRateFxPrefab: {fileID: 1202038136039314, guid: 2a2145ba402264aca9c0deb7d222e5bc,
@@ -241,11 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d94f669808b9834286bac9a39913028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
   description: 
   radiusEffectColor: {r: 0, g: 0, b: 0, a: 0}
   towerTargetter: {fileID: 6142760579525891157}
-  slowFactor: 1
+  slowFactor: 1.4
   slowFactorFormat: <b>Slow Factor:</b> {0}
   enterParticleSystem: {fileID: 0}
   slowFxPrefab: {fileID: 1202038136039314, guid: 2a2145ba402264aca9c0deb7d222e5bc,

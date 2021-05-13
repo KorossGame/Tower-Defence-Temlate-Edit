@@ -1,7 +1,9 @@
+using System;
 using ActionGameFramework.Health;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Agents;
+using TowerDefense.Towers;
 using UnityEngine;
 
 namespace TowerDefense.Affectors
@@ -47,14 +49,32 @@ namespace TowerDefense.Affectors
 		{
 			towerTargetter.targetEntersRange -= OnTargetEntersRange;
 			towerTargetter.targetExitsRange -= OnTargetExitsRange;
+
+			DeactivatePowerUP();
+		}
+
+		private void DeactivatePowerUP()
+		{
+			foreach (Targetable enemy in towerTargetter.GetAllTargets())
+			{
+				try
+				{
+					RemoveFireRateComponent(enemy.gameObject);
+				}
+				catch (MissingReferenceException)
+				{
+					//
+				}
+			}
 		}
 
 		/// <summary>
 		/// Attaches a <see cref="AgentFireRateUp" /> to the agent
 		/// </summary>
 		/// <param name="target">The agent to attach the faster to</param>
-		protected void AttachFireRateComponent(Agent target)
+		protected void AttachFireRateComponent(GameObject target)
 		{
+			// Add Agent
 			var agent = target.GetComponent<AgentFireRateUp>();
 			if (agent == null)
 			{
@@ -63,14 +83,15 @@ namespace TowerDefense.Affectors
 
 			if (fireRateFactor >= 1)
 			{
-				agent.Initialize(fireRateFactor, fireRateFxPrefab, target.appliedEffectOffset, target.appliedEffectScale);
+				agent.Initialize(fireRateFactor, fireRateFxPrefab);
 			}
 			else
             {
-				agent.Initialize(fireRateFactor, fireRateFxPrefab, target.appliedEffectOffset, target.appliedEffectScale, false);
+				agent.Initialize(fireRateFactor, fireRateFxPrefab, default(Vector3), 1, false);
             }
-			
 
+
+			// SFX
 			if (enterParticleSystem != null)
 			{
 				enterParticleSystem.Play();
@@ -85,16 +106,17 @@ namespace TowerDefense.Affectors
 		/// Removes the <see cref="AgentFireRateUp" /> from the agent once it leaves the area
 		/// </summary>
 		/// <param name="target">The agent to remove the faster from</param>
-		protected void RemoveFireRateComponent(Agent target)
+		protected void RemoveFireRateComponent(GameObject target)
 		{
 			if (target == null)
 			{
 				return;
 			}
-			var agent = target.gameObject.GetComponent<AgentFireRateUp>();
+
+			var agent = target.GetComponent<AgentFireRateUp>();
 			if (agent != null)
 			{
-				agent.RemoveSlow(fireRateFactor);
+				agent.RemoveEffect(fireRateFactor);
 			}
 		}
 
@@ -103,14 +125,7 @@ namespace TowerDefense.Affectors
 		/// </summary>
 		protected void OnTargetEntersRange(Targetable other)
 		{
-			if (!isActive) return;
-
-			var agent = other as Agent;
-			if (agent == null)
-			{
-				return;
-			}
-			AttachFireRateComponent(agent);
+			AttachFireRateComponent(other.gameObject);
 		}
 
 		/// <summary>
@@ -118,12 +133,7 @@ namespace TowerDefense.Affectors
 		/// </summary>
 		protected void OnTargetExitsRange(Targetable other)
 		{
-			var searchable = other as Agent;
-			if (searchable == null)
-			{
-				return;
-			}
-			RemoveFireRateComponent(searchable);
+			RemoveFireRateComponent(other.gameObject);
 		}
 	}
 }

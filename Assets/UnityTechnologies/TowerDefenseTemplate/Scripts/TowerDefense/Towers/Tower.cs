@@ -44,9 +44,6 @@ namespace TowerDefense.Towers
 		/// </summary>
 		public TowerLevel currentTowerLevel { get; protected set; }
 
-		public float originalFireRateSpeed { get; set; } = 0;
-		public float originalDamage { get; set; } = 0;
-
 		/// <summary>
 		/// Gets whether the tower can level up anymore
 		/// </summary>

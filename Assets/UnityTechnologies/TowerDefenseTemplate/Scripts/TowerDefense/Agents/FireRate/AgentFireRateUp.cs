@@ -1,7 +1,9 @@
+using System;
 using Core.Health;
 using Core.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using TowerDefense.Affectors;
 using UnityEngine;
 
 namespace TowerDefense.Agents
@@ -9,6 +11,12 @@ namespace TowerDefense.Agents
 	public class AgentFireRateUp : AgentEffect
 	{
 		protected GameObject m_FireRateFx;
+		public AttackAffector affector;
+		
+		private float originalFireRate = -1;
+		private float oldFireRate = -1;
+
+		private float fireRateFactor;
 
 		protected List<float> m_CurrentEffects = new List<float>();
 
@@ -19,16 +27,26 @@ namespace TowerDefense.Agents
 		/// <param name="ratefxPrefab">The instantiated object to visualize the slow effect</param>
 		/// <param name="position"></param>
 		/// <param name="scale"></param>
-		public virtual void Initialize(float fireRateFactor, GameObject ratefxPrefab = null,
+		public virtual void Initialize(float fireRateFactorNew, GameObject ratefxPrefab = null,
 							   Vector3 position = default(Vector3),
 							   float scale = 1, bool positiveMode = true)
 		{
 			LazyLoad();
+			if (m_Tower == null) return;
+
 			m_CurrentEffects.Add(fireRateFactor);
 
+			fireRateFactor = fireRateFactorNew;
+			
 			// Behaviour.
-			float originalFireRate = m_Tower.gameObject.GetComponent<AttackingAgent>().m_AttackAffector.fireRate;
-			m_Tower.originalFireRateSpeed = originalFireRate;
+			affector = m_Tower.gameObject.GetComponentInChildren<AttackAffector>();
+			if (affector == null) return;
+			
+			// Save origin fire rate only once.
+			if (originalFireRate == -1)
+			{
+				originalFireRate = affector.fireRate;
+			}
 
 			float newFireRate = 0;
 
@@ -41,7 +59,7 @@ namespace TowerDefense.Agents
 				{
 					max = Mathf.Max(max, item);
 				}
-				newFireRate = fireRateFactor * max;
+				newFireRate = originalFireRate * max;
 			}
 			else
 			{
@@ -51,11 +69,12 @@ namespace TowerDefense.Agents
 				{
 					min = Mathf.Min(min, item);
 				}
-				newFireRate = fireRateFactor * min;
+				newFireRate = originalFireRate * min;
 			}
-
+			
 			// Apply new fire rate
-			m_Agent.gameObject.GetComponent<AttackingAgent>().m_AttackAffector.fireRate = newFireRate;
+			affector.fireRate = newFireRate;
+			oldFireRate = affector.fireRate;
 
 			// Visuals.
 			if (m_FireRateFx == null && ratefxPrefab != null)
@@ -65,23 +84,54 @@ namespace TowerDefense.Agents
 				m_FireRateFx.transform.localPosition = position;
 				m_FireRateFx.transform.localScale *= scale;
 			}
-			m_Agent.removed += OnRemoved;
+
+			m_Tower.removed += OnRemoved;
+		}
+
+		private void Update()
+		{
+			try
+			{
+				if (affector == null) affector = m_Tower.gameObject.GetComponentInChildren<AttackAffector>();
+				
+				if (oldFireRate != affector.fireRate)
+				{
+					originalFireRate = affector.fireRate;
+					
+					// Fire rate up
+					float max = fireRateFactor;
+					foreach (float item in m_CurrentEffects)
+					{
+						max = Mathf.Max(max, item);
+					}
+					affector.fireRate = originalFireRate * max;
+					oldFireRate = affector.fireRate;
+				
+				}
+			}
+			catch (NullReferenceException)
+			{
+				//
+			}
 		}
 
 		/// <summary>
 		/// Resets the agent's speed 
 		/// </summary>
-		public void RemoveSlow(float slowFactor)
+		public void RemoveEffect(float fireRateFactor)
 		{
-			m_Agent.removed -= OnRemoved;
+			if (m_Tower == null) return;
+			
+			m_Tower.removed -= OnRemoved;
 
-			m_CurrentEffects.Remove(slowFactor);
+			m_CurrentEffects.Remove(fireRateFactor);
+
 			if (m_CurrentEffects.Count != 0)
 			{
 				return;
 			}
 
-			// No more slow effects
+			// No more effects
 			ResetAgent();
 		}
 
@@ -90,15 +140,15 @@ namespace TowerDefense.Agents
 		/// </summary>
 		protected void OnRemoved(DamageableBehaviour targetable)
 		{
-			m_Agent.removed -= OnRemoved;
+			m_Tower.removed -= OnRemoved;
 			ResetAgent();
 		}
 
 		protected void ResetAgent()
 		{
-			if (m_Agent != null)
+			if (m_Tower != null && affector != null)
 			{
-				m_Tower.gameObject.GetComponent<AttackingAgent>().m_AttackAffector.fireRate = m_Tower.originalFireRateSpeed;
+				affector.fireRate = originalFireRate;
 			}
 			if (m_FireRateFx != null)
 			{

@@ -12,7 +12,7 @@ namespace TowerDefense.Agents
 		/// References to the agent that will be affected
 		/// </summary>
 		protected Agent m_Agent;
-		protected Tower m_Tower;
+		public Tower m_Tower;
 
 		public virtual void Awake()
 		{

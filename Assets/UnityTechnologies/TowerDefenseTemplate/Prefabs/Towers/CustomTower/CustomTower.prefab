@@ -317,7 +317,7 @@ MonoBehaviour:
   - {fileID: 7809974506141574729, guid: 9f6a369b3d11f4444b78909b0686a307, type: 3}
   - {fileID: 4081731217141843367, guid: 5f60bb6ab955f8148bd91e4e3ccc97fc, type: 3}
   - {fileID: 4666586629134270834, guid: c7e83846844991c4abe5209749673df6, type: 3}
-  towerName: Mutation Tower
+  towerName: Rage Commander
   dimensions:
     x: 2
     y: 2
@@ -526,15 +526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703883d72de4ffa4ca9e1b1096cb8ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player:
-    unityObjectReference: {fileID: 11400000, guid: 2e20cdb38c63f4edf8ee385c50c089ce,
-      type: 2}
-  enemy:
-    unityObjectReference: {fileID: 11400000, guid: 9dc4735bf52f547d59ebe1007e9a0e7f,
-      type: 2}
-  support:
-    unityObjectReference: {fileID: 11400000, guid: b352f170f513f9a4091b405cb9e4e900,
-      type: 2}
 --- !u!1 &8301587081464257162
 GameObject:
   m_ObjectHideFlags: 0

@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 8541367424777825003}
   - component: {fileID: 5807965301236008540}
   - component: {fileID: 7916481038745333289}
+  - component: {fileID: 2621489976503372758}
   - component: {fileID: 8684426731951960271}
   - component: {fileID: 6578760715839978660}
   - component: {fileID: 4427378027081820015}
@@ -391,7 +392,6 @@ GameObject:
   - component: {fileID: 3906774978839772339}
   - component: {fileID: 8566072297826583810}
   - component: {fileID: 7594610505045115571}
-  - component: {fileID: 2621489976503372758}
   m_Layer: 11
   m_Name: CustomEnemy
   m_TagString: Untagged
@@ -452,8 +452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configuration:
-    maxHealth: 10
-    startingHealth: 10
+    maxHealth: 17
+    startingHealth: 17
     alignment:
       unityObjectReference: {fileID: 11400000, guid: 9dc4735bf52f547d59ebe1007e9a0e7f,
         type: 2}
@@ -522,6 +522,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootDropped: 10
+--- !u!114 &2621489976503372758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8372711110010290866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ff47a2e4c43714d912d8060553cacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyToSteal: 10
 --- !u!114 &8684426731951960271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,19 +739,6 @@ MonoBehaviour:
   deathParticleSystemPrefab: {fileID: 198059975614214484, guid: 10eef6400678c4c75b2ac94e435a2bd5,
     type: 3}
   deathEffectOffset: {x: 0, y: 0, z: 0}
---- !u!114 &2621489976503372758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8372711110010290866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ff47a2e4c43714d912d8060553cacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currencyToSteal: 10
 --- !u!1 &8938832655676200610
 GameObject:
   m_ObjectHideFlags: 0

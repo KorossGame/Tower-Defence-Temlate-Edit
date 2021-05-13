@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24e2352be0954e359a850a9d99215c6e, type: 3}
   m_Name: TowerData3
   m_EditorClassIdentifier: 
-  description: Tier 3 - Applies Random Effect on Towers or Enemies
-  upgradeDescription: Increases % of Good Effects
+  description: Tier 3 - Increase Tower Fire Rate
+  upgradeDescription: Increase Fire Rate %
   cost: 40
   sell: 24
   maxHealth: 5

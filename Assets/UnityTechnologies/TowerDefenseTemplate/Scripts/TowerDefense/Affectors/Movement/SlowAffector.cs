@@ -103,8 +103,6 @@ namespace TowerDefense.Affectors
 		/// </summary>
 		protected void OnTargetEntersRange(Targetable other)
 		{
-			if (!isActive) return;
-
 			var agent = other as Agent;
 			if (agent == null)
 			{

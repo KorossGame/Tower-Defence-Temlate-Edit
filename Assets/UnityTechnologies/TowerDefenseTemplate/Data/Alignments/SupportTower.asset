@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SupportTower
   m_EditorClassIdentifier: 
   opponents:
-  - {fileID: 11400000, guid: 9dc4735bf52f547d59ebe1007e9a0e7f, type: 2}
   - {fileID: 11400000, guid: 2e20cdb38c63f4edf8ee385c50c089ce, type: 2}
+  - {fileID: 11400000, guid: 9dc4735bf52f547d59ebe1007e9a0e7f, type: 2}
