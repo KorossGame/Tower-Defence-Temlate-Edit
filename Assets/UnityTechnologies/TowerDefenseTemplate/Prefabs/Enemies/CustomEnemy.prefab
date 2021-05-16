@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb6b59d40564378ba0b1580a4a9dd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootDropped: 10
+  lootDropped: 7
 --- !u!114 &2621489976503372758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ff47a2e4c43714d912d8060553cacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyToSteal: 10
+  currencyToSteal: 7
 --- !u!114 &8684426731951960271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4f7293b07e4698a4e3b652679f0c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
   description: 
   projectile: {fileID: 1797349743178286, guid: efcfdd276fd9a4bce9c848912a90dc0b, type: 3}
   projectilePoints:

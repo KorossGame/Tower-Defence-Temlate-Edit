@@ -93,8 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5066712008378493162}
   - component: {fileID: 3142040021455907912}
-  - component: {fileID: 3275724194262650050}
   - component: {fileID: 8993811068271922877}
+  - component: {fileID: 3275724194262650050}
   - component: {fileID: 3309101431643121572}
   m_Layer: 0
   m_Name: Affector
@@ -137,6 +137,19 @@ MonoBehaviour:
   idleCorrectionTime: 2
   attachedCollider: {fileID: 8993811068271922877}
   idleWaitTime: 2
+--- !u!135 &8993811068271922877
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448876311611847164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3275724194262650050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,19 +171,6 @@ MonoBehaviour:
   fireRateFxPrefab: {fileID: 1202038136039314, guid: 2a2145ba402264aca9c0deb7d222e5bc,
     type: 3}
   audioSource: {fileID: 0}
---- !u!135 &8993811068271922877
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448876311611847164}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3309101431643121572
 MonoBehaviour:
   m_ObjectHideFlags: 0

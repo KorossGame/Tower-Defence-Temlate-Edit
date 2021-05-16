@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Tier 1 - Increase Tower Fire Rate
   upgradeDescription: 
-  cost: 15
+  cost: 10
   sell: 6
   maxHealth: 5
   startingHealth: 5

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Tier 3 - Increase Tower Fire Rate
   upgradeDescription: Increase Fire Rate %
-  cost: 40
-  sell: 24
+  cost: 25
+  sell: 22
   maxHealth: 5
   startingHealth: 5
   icon: {fileID: 21300000, guid: 8de2b0ca8a36944a9b9dd75dff42644f, type: 3}
